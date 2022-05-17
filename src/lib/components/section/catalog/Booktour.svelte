@@ -43,7 +43,7 @@
 	<ul role="list" class="divide-y divide-gray-200">
 		{#each applications as application}
 			<li>
-				<a href={application.href} class="block hover:bg-gray-50">
+				<a sveltekit:prefetch href={application.href} class="block hover:bg-gray-50">
 					<div class="flex items-center px-4 py-4 sm:px-6">
 						<div class="min-w-0 flex-1 flex items-center">
 							<div class="flex-shrink-0">

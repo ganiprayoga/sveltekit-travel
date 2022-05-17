@@ -6,7 +6,7 @@
 	<div>
 		<nav class="sm:hidden" aria-label="Back">
 			<a
-				href="titleProps.backURI"
+				href={titleProps.backURI}
 				class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700"
 			>
 				<i class="far fa-chevron-left" />
