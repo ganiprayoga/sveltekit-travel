@@ -43,28 +43,51 @@
 				<i class="fa-regular fa-user-hair" />
 			</button>
 			<div tabindex="0" class="dropdown-content bg-base-100 w-64 rounded-box shadow">
-				<div class="flex flex-row p-4">
-					<div class="flex-shrink avatar">
-						<div class=" w-12 rounded-full">
-							<img
-								src="https://media.istockphoto.com/photos/illustration-of-smiling-happy-man-with-laptop-sitting-in-armchair-picture-id1226886130?s=612x612"
-								alt=""
-							/>
+				{#if logStatus}
+					<div class="flex flex-row p-4">
+						<div class="flex-shrink avatar">
+							<div class=" w-12 rounded-full">
+								<img
+									src="https://media.istockphoto.com/photos/illustration-of-smiling-happy-man-with-laptop-sitting-in-armchair-picture-id1226886130?s=612x612"
+									alt=""
+								/>
+							</div>
+						</div>
+						<div class="pl-3">
+							<span class="text-base-content">Welcome</span>
+							<p class="font-bold">User</p>
 						</div>
 					</div>
-					<div class="pl-3">
-						<span class="text-base-content">Welcome</span>
-						<p class="font-bold">User</p>
-					</div>
-				</div>
+				{/if}
 				<ul class="menu">
-					{JSON.stringify(logStatus)}
-					{#if true}
-						Login nih
+					{#if logStatus}
+						<li>
+							<a href="/profile/">
+								<span class="w-5"><i class="far fa-user" /></span>
+								My Profile
+							</a>
+						</li>
+						<li>
+							<a href="/customer-bookings/">
+								<span class="w-5"><i class="far fa-ticket" /></span>
+								Bookings
+							</a>
+						</li>
+						<li class="menu-title"><span><hr /></span></li>
+						<li>
+							<a href="/logout/">
+								<span class="w-5"><i class="far fa-arrow-right-from-bracket" /></span>
+								Sign Out
+							</a>
+						</li>
+					{:else}
+						<li>
+							<a href="/login/">
+								<span class="w-5"><i class="far fa-arrow-right-to-bracket" /></span>
+								Sign In
+							</a>
+						</li>
 					{/if}
-					<li><a>Item 1</a></li>
-					<li><a>Item 2</a></li>
-					<li><a>Item 3</a></li>
 				</ul>
 			</div>
 		</div>

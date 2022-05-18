@@ -19,17 +19,12 @@ export async function setProfile() {
     const profile = {
         userName: json_profile.lastname,
         userID: json_profile.id,
-        userGroup: json_profile.user_group_list.name
+        userGroup: json_profile.user_group_list[0].name
     }
-    console.log(JSON.stringify(profile));
 
     browserSet('name', json_profile.firstname + ' ' + json_profile.lastname);
     browserSet('isloggedin', true);
-    browserSet('profile', {
-        name: json_profile.firstname,
-        id: json_profile.id,
-        group: json_profile.user_group_list[0].name
-    });
+    browserSet('profile', JSON.stringify(profile));
 }
 
 export async function getProfile() {
