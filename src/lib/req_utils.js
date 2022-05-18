@@ -11,7 +11,6 @@ export function browserGet(key) {
 }
 
 export function browserSet(key, value) {
-    console.log({ 'browser': browser, key: value });
     if (browser) {
         localStorage.setItem(key, value)
     }

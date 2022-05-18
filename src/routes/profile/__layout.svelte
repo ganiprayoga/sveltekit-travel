@@ -1,5 +1,5 @@
 <script>
-    import { isLoggedIn } from '$lib/auth_utils';
+	import { isLoggedIn } from '$lib/auth_utils';
 
 	if (!isLoggedIn()) {
 		window.location = '/login';

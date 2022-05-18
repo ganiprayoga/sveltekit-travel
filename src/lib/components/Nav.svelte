@@ -1,20 +1,23 @@
+<script context="module">
+	import { isLoggedIn, getProfile } from '$lib/auth_utils';
+	import { onMount } from 'svelte';
+</script>
+
+<script>
+	let logStatus;
+	let logData;
+
+	onMount(async () => {
+		logStatus = await isLoggedIn();
+		logData = await getProfile();
+	});
+</script>
+
 <div class="navbar bg-base-100">
 	<div class="navbar-start">
 		<div class="dropdown">
 			<button tabindex="0" class="btn btn-ghost btn-circle">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-5 w-5"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-					><path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M4 6h16M4 12h16M4 18h7"
-					/></svg
-				>
+				<i class="fa-regular fa-bars-staggered" />
 			</button>
 			<ul
 				tabindex="0"
@@ -35,68 +38,35 @@
 		<a href="/" class="btn btn-ghost normal-case text-xl">TravelApp</a>
 	</div>
 	<div class="navbar-end">
-		<div class="dropdown">
+		<div class="dropdown dropdown-end">
 			<button tabindex="0" class="btn btn-ghost btn-circle">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-5 w-5"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-					><path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M4 6h16M4 12h16M4 18h7"
-					/></svg
-				>
+				<i class="fa-regular fa-user-hair" />
 			</button>
-			<ul
-				tabindex="0"
-				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-			>
-				<li><a href="/customer-bookings/">My Booking</a></li>
-
-				<a href="/">Home</a>
-				<a href="/login">Login</a>
-				<a href="/profile">Profile</a>
-				<a href="/logout">Logout</a>
-				<!--          <li><a>Portfolio</a></li>-->
-				<!--          <li><a>About</a></li>-->
-			</ul>
-		</div>
-		<button class="btn btn-ghost btn-circle">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="h-5 w-5"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
-				><path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-				/></svg
-			>
-		</button>
-		<button class="btn btn-ghost btn-circle">
-			<div class="indicator">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-5 w-5"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-					><path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-					/></svg
-				>
-				<span class="badge badge-xs badge-primary indicator-item" />
+			<div tabindex="0" class="dropdown-content bg-base-100 w-64 rounded-box shadow">
+				<div class="flex flex-row p-4">
+					<div class="flex-shrink avatar">
+						<div class=" w-12 rounded-full">
+							<img
+								src="https://media.istockphoto.com/photos/illustration-of-smiling-happy-man-with-laptop-sitting-in-armchair-picture-id1226886130?s=612x612"
+								alt=""
+							/>
+						</div>
+					</div>
+					<div class="pl-3">
+						<span class="text-base-content">Welcome</span>
+						<p class="font-bold">User</p>
+					</div>
+				</div>
+				<ul class="menu">
+					{JSON.stringify(logStatus)}
+					{#if true}
+						Login nih
+					{/if}
+					<li><a>Item 1</a></li>
+					<li><a>Item 2</a></li>
+					<li><a>Item 3</a></li>
+				</ul>
 			</div>
-		</button>
+		</div>
 	</div>
 </div>

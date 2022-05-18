@@ -40,6 +40,8 @@
 	import DetailGallery from '$lib/components/section/gallery/Detailgrid.svelte';
 	import ElementRating from '$lib/components/elements/Rating.svelte';
 
+	import LoadTitle from '$lib/components/loading/Title.svelte';
+
 	export let tour;
 	export let loaded = false;
 	export let titleProps;
@@ -136,10 +138,7 @@
 			</div>
 		{:else}
 			<div class="mt-8">
-				<div class="animate-pulse space-y-2">
-					<div class="bg-base-200 h-6 rounded-full" />
-					<div class="bg-base-200 h-6 w-20 rounded-full" />
-				</div>
+				<LoadTitle />
 				<div class="py-2">
 					<div class="bg-white shadow overflow-hidden rounded-lg my-4">
 						<div class="px-4 py-5 sm:px-6">

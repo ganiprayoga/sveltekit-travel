@@ -4,7 +4,7 @@
 
 	onMount(async () => {
 		if (await isLoggedIn()) {
-			window.location = '/profile'
+			// window.location = '/profile'
 		}
 	});
 
@@ -22,7 +22,7 @@
 			browserSet('DOLAPIKEY', json.success.token);
 			setProfile();
 
-			window.location = '/profile';
+			// window.location = '/profile';
 		}
 	}
 </script>
