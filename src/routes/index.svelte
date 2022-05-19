@@ -3,6 +3,10 @@
 	import CatalogGrid from '$lib/components/section/HomeGrid.svelte';
 </script>
 
+<svelte:head>
+	<title>Best TravelApp</title>
+</svelte:head>
+
 <Hero />
 <div class="bg-base-200 p-4 md:p-0">
 	<div class="container mx-auto py-8">

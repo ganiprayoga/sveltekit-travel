@@ -16,15 +16,14 @@
 <div class="navbar bg-base-100">
 	<div class="navbar-start">
 		<div class="dropdown">
-			<label for="tab" tabindex="0" class="btn btn-ghost btn-circle">
+			<button tabindex="0" class="btn btn-ghost btn-circle">
 				<i class="fa-regular fa-bars-staggered" />
-			</label>
+			</button>
 			<ul
 				tabindex="0"
 				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 			>
 				<li><a href="/">Home</a></li>
-
 			</ul>
 		</div>
 	</div>
@@ -33,9 +32,9 @@
 	</div>
 	<div class="navbar-end">
 		<div class="dropdown dropdown-end">
-			<label for="tab" tabindex="0" class="btn btn-ghost btn-circle">
+			<button tabindex="0" class="btn btn-ghost btn-circle">
 				<i class="fa-regular fa-user-hair" />
-			</label>
+			</button>
 			<div tabindex="0" class="dropdown-content bg-base-100 w-64 rounded-box shadow">
 				{#if logStatus}
 					<div class="flex flex-row p-4">

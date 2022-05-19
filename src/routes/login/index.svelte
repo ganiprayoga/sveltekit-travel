@@ -18,19 +18,28 @@
 	let signinLoad = false;
 
 	async function handleLogin() {
-		signinLoad = true
-		const json = await get(fetch, 'http://hris-backend.kelolagroup.com/api/index.php/login?', {
-			login: username,
-			password
-		});
-		if (json.success.token) {
-			browserSet('DOLAPIKEY', json.success.token);
-			await setProfile();
+		try {
+			signinLoad = true;
+			const json = await get(fetch, 'http://hris-backend.kelolagroup.com/api/index.php/login?', {
+				login: username,
+				password
+			});
+			if (json.success.token) {
+				browserSet('DOLAPIKEY', json.success.token);
+				await setProfile();
 
-			window.location = '/profile';
+				window.location = '/profile';
+			}
+		} catch (err) {
+			console.log('Terjadi kesalahan: ' + JSON.stringify(err));
+			signinLoad = false;
 		}
 	}
 </script>
+
+<svelte:head>
+	<title>Login to TravelApp</title>
+</svelte:head>
 
 <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 	<div class="max-w-md w-full space-y-8">
@@ -95,20 +104,11 @@
 						Sign in
 					</button>
 				{:else}
-					<div class="flex h-4 w-4">
-						<div
-							class="animate-ping h-full w-full rounded-full bg-primary opacity-75"
-						/>
+					<div class="flex h-8 w-8">
+						<div class="animate-ping h-full w-full rounded-full bg-primary opacity-75" />
 					</div>
 				{/if}
 			</div>
 		</form>
 	</div>
 </div>
-<!-- 
-<div>
-	<input type="text" bind:value={username} name="username" placeholder="Enter your username" />
-	<input type="password" bind:value={password} name="password" placeholder="Enter your password" />
-
-	<button on:click={handleLogin}>Login</button>
-</div> -->
