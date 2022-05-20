@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
+	import PageTitle from '$lib/components/section/page/Title.svelte';
 	import { onMount } from 'svelte';
 
-	let name;
+	let name = ' ';
 
 	onMount(async () => {
 		const res = await fetch('http://hris-backend.kelolagroup.com/api/index.php/users/info', {
@@ -12,14 +13,44 @@
 		const json = await res.json();
 		name = json.firstname + json.lastname;
 	});
+
+	const titleProps = {
+		title: 'Welcome, ' + name,
+		breadCrumb: [
+			{
+				title: 'Home',
+				uri: '/'
+			},
+			{
+				title: 'My Profile',
+				uri: '/profile/'
+			}
+		],
+		backURI: '/profile/'
+	};
 </script>
 
-<h2>{name}</h2>
+<PageTitle {titleProps} />
+<h2 class="text-bold text-primary-content">{name}</h2>
 
-<div class="dropdown">
-  <label tabindex="0" class="btn m-1">Click</label>
-  <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-    <li><a>Item 1</a></li>
-    <li><a>Item 2</a></li>
-  </ul>
+<div class="pb-5 border-b border-gray-200 mt-8">
+	<h3 class="text-lg leading-6 font-medium text-gray-900">Your tour setting</h3>
+</div>
+
+<div class="bg-white shadow overflow-hidden sm:rounded-md">
+	<ul class="divide-y divide-gray-200">
+		<li>
+			<a sveltekit:prefetch href="/customer-bookings" class="block hover:bg-gray-50">
+				<div class="flex items-center px-4 py-4 sm:px-6">
+					<div class="min-w-0 flex-1 flex items-center">
+						<div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+							<div>
+								<p class="text-sm font-medium truncate">My Bookings</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</li>
+	</ul>
 </div>

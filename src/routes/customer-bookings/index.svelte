@@ -13,7 +13,7 @@
 				uri: '/profile/'
 			}
 		],
-		backURI: '/'
+		backURI: '/profile/'
 	};
 </script>
 

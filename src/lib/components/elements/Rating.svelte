@@ -8,13 +8,13 @@
 		<input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
 	</div>
 	<div class="form-control mb-4">
-		<label class="label">
+		<label class="label" for="impression">
 			<span class="label-text">Please tell us your impression.</span>
 		</label>
 		<textarea class="textarea textarea-bordered h-24 bg-base-100" placeholder="Impression" />
 	</div>
 	<div class="form-control mb-4">
-		<label class="label">
+		<label class="label" for="feedback">
 			<span class="label-text">Give us a feedback for improvement in future.</span>
 		</label>
 		<textarea class="textarea textarea-bordered h-24 bg-base-100" placeholder="Feedback" />
