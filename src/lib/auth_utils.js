@@ -8,7 +8,7 @@ export async function isLoggedIn() {
 
 export async function setProfile() {
     const res_profile = await fetch(
-        'http://hris-backend.kelolagroup.com/api/index.php/users/info',
+        `${import.meta.env.VITE_API_URL}users/info`,
         {
             headers: {
                 DOLAPIKEY: localStorage.getItem('DOLAPIKEY')
@@ -16,10 +16,10 @@ export async function setProfile() {
         }
     );
     const json_profile = await res_profile.json();
+    console.log(json_profile)
     const profile = {
         userName: json_profile.lastname,
-        userID: json_profile.id,
-        userGroup: json_profile.user_group_list[0].name
+        userID: json_profile.id
     }
 
     browserSet('name', json_profile.firstname + ' ' + json_profile.lastname);

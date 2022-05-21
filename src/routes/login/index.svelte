@@ -21,12 +21,13 @@
 	async function handleLogin() {
 		try {
 			signinLoad = true;
-			const json = await get(fetch, 'http://hris-backend.kelolagroup.com/api/index.php/login?', {
+			const json = await get(fetch, `${import.meta.env.VITE_API_URL}login?`, {
 				login: username,
 				password
 			});
 			if (json.success.token) {
 				browserSet('DOLAPIKEY', json.success.token);
+				console.log('token sukses');
 				await setProfile();
 
 				window.location = '/profile';
