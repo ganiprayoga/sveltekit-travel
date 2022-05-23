@@ -8,7 +8,7 @@ export async function isLoggedIn() {
 
 export async function setProfile() {
     const res_profile = await fetch(
-        `${import.meta.env.VITE_API_URL}users/info`,
+        `${import.meta.env.VITE_API_URL}/users/info`,
         {
             headers: {
                 DOLAPIKEY: localStorage.getItem('DOLAPIKEY')

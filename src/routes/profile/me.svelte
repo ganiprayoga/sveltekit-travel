@@ -8,7 +8,7 @@
 </script>
 
 <script>
-    import { browserGet } from '$lib/req_utils'
+	import { browserGet } from '$lib/req_utils';
 	export let session;
 </script>
 

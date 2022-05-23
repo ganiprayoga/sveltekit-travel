@@ -5,7 +5,7 @@
 	let name = ' ';
 
 	onMount(async () => {
-		const res = await fetch(`${import.meta.env.VITE_API_URL}users/info`, {
+		const res = await fetch(`${import.meta.env.VITE_API_URL}/users/info`, {
 			headers: {
 				DOLAPIKEY: localStorage.getItem('DOLAPIKEY')
 			}

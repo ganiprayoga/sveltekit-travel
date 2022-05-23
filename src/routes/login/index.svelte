@@ -21,7 +21,7 @@
 	async function handleLogin() {
 		try {
 			signinLoad = true;
-			const json = await get(fetch, `${import.meta.env.VITE_API_URL}login?`, {
+			const json = await get(fetch, `${import.meta.env.VITE_API_URL}/login?`, {
 				login: username,
 				password
 			});
