@@ -1,4 +1,38 @@
-<script>
+<script lang="ts">
+	import ImagePlaceholder from '$lib/assets/images/placeholder.png'
+	import {dateFormat} from '$lib/constant'
+	import {onMount} from "svelte";
+
+	let trips = []
+	let loaded = false
+	let customError = '';
+
+	onMount(async () => {
+		try {
+			const res = await fetch(`${import.meta.env.VITE_API_URL}/projects`, {
+				headers: {
+					DOLAPIKEY: localStorage.getItem('DOLAPIKEY')
+				}
+			});
+			const json = await res.json();
+
+			if (json.error) {
+				customError = json.error.message;
+				loaded = true
+
+				return false;
+			}
+
+			trips = json;
+			loaded = true;
+
+		} catch (err) {
+			console.log({'Error': err});
+			customError = JSON.stringify(err);
+			loaded = true;
+		}
+	})
+
 	const applications = [
 		{
 			applicant: {
@@ -41,37 +75,37 @@
 
 <div class="bg-white shadow overflow-hidden sm:rounded-md">
 	<ul role="list" class="divide-y divide-gray-200">
-		{#each applications as application}
+		{#each trips as trip}
 			<li>
-				<a sveltekit:prefetch href={application.href} class="block hover:bg-gray-50">
+				<a sveltekit:prefetch href={`/customer-bookings/trip/${trip.id}`} class="block hover:bg-gray-50">
 					<div class="flex items-center px-4 py-4 sm:px-6">
 						<div class="min-w-0 flex-1 flex items-center">
 							<div class="flex-shrink-0">
-								<img class="h-12 w-12 rounded-full" src={application.applicant.imageUrl} alt="" />
+								<img class="h-12 w-12 rounded-full" src={ImagePlaceholder} alt="" />
 							</div>
 							<div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
 								<div>
-									<p class="text-sm font-medium truncate">{application.applicant.name}</p>
+									<p class="text-sm font-medium truncate">{trip.title}</p>
 									<p class="mt-2 flex items-center text-sm text-gray-500">
 										<i class="fas fa-calendar" />&nbsp;
-										<span class="truncate">{application.dateFull}</span> &nbsp;
-										<i class="fas fa-user" />&nbsp;
-										<span class="truncate">{application.applicant.email}</span>
+										<span class="truncate">{dateFormat(trip.date_start)}</span> &nbsp;
+<!--										<i class="fas fa-user" />&nbsp;-->
+<!--										<span class="truncate">{application.applicant.email}</span>-->
 									</p>
 								</div>
-								<div class="md:block">
-									<div>
-										<p class="mt-2 flex items-center text-sm text-gray-500">
-											{#if application.status == 'warning'}
-												<i class="fas fa-triangle-exclamation text-warning" />
-											{:else}
-												<i class="fas fa-circle-check text-success" />
-											{/if}
-											&nbsp;
-											{application.stage}
-										</p>
-									</div>
-								</div>
+<!--								<div class="md:block">-->
+<!--									<div>-->
+<!--										<p class="mt-2 flex items-center text-sm text-gray-500">-->
+<!--											{#if application.status == 'warning'}-->
+<!--												<i class="fas fa-triangle-exclamation text-warning" />-->
+<!--											{:else}-->
+<!--												<i class="fas fa-circle-check text-success" />-->
+<!--											{/if}-->
+<!--											&nbsp;-->
+<!--											{application.stage}-->
+<!--										</p>-->
+<!--									</div>-->
+<!--								</div>-->
 							</div>
 						</div>
 						<div />

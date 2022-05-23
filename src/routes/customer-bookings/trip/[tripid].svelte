@@ -3,30 +3,10 @@
 	export async function load({ params }) {
 		const id = params.tripid;
 		const tour = await tourDetail();
-		const titleProps = {
-			title: tour.tourName,
-			breadCrumb: [
-				{
-					title: 'Home',
-					uri: '/'
-				},
-				{
-					title: 'My Profile',
-					uri: '/profile/'
-				},
-				{
-					title: 'Customer Booking',
-					uri: '/customer-bookings/'
-				}
-			],
-			backURI: '/customer-bookings/'
-		};
 		return {
 			props: {
 				tripID: id,
-				titleProps: titleProps,
-				tour: tour,
-				loaded: true
+				tour: tour
 			}
 		};
 	}
@@ -41,11 +21,62 @@
 	import ElementRating from '$lib/components/elements/Rating.svelte';
 
 	import LoadTitle from '$lib/components/loading/Title.svelte';
+	import {onMount} from "svelte";
 
-	export let tour;
-	export let loaded = false;
-	export let titleProps;
 	export let tripID;
+	export let tour;
+
+	let loaded = false;
+	let titleProps;
+	let trip = {};
+	let customError = '';
+
+	onMount(async () => {
+		try {
+			const res = await fetch(`${import.meta.env.VITE_API_URL}/projects/${tripID}`, {
+				headers: {
+					DOLAPIKEY: localStorage.getItem('DOLAPIKEY')
+				}
+			});
+			const json = await res.json();
+
+			if (json.error) {
+				customError = json.error.message;
+				loaded = true
+
+				return false;
+			}
+
+			trip = json;
+			titleProps = {
+				title: trip.title,
+				breadCrumb: [
+					{
+						title: 'Home',
+						uri: '/'
+					},
+					{
+						title: 'My Profile',
+						uri: '/profile/'
+					},
+					{
+						title: 'Customer Booking',
+						uri: '/customer-bookings/'
+					}
+				],
+				backURI: '/customer-bookings/'
+			};
+			console.log(titleProps);
+			loaded = true;
+
+		} catch (err) {
+			console.log({'Error': err});
+			customError = JSON.stringify(err);
+			loaded = true;
+		}
+	});
+
+
 </script>
 
 <div class="container mx-auto pb-8">
