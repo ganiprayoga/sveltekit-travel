@@ -1,40 +1,44 @@
 <script context="module">
-	import { isLoggedIn, getProfile } from '$lib/auth_utils';
+    import {isLoggedIn, getProfile} from '$lib/auth_utils';
 
-	export async function load({ params }) {
-		const status = await isLoggedIn();
+    export async function load({params}) {
+        const status = await isLoggedIn();
 
-		return {
-			props: {
-				loginStatus: status
-			}
-		};
-	}
+        return {
+            props: {
+                loginStatus: status
+            }
+        };
+    }
 </script>
 
 <script>
-	import '$lib/style/global.scss';
-	import Nav from '$lib/components/Nav.svelte';
-	import { browser } from '$app/env';
+    import {page} from '$app/stores'
 
-	export let loginStatus;
-	let loginData;
-	let loginInfo;
+    import Transition from '$lib/components/transition.svelte'
+    import '$lib/style/global.scss';
+    import Nav from '$lib/components/Nav.svelte';
+    import {browser} from '$app/env';
 
-	if (browser) {
-		loginData = localStorage.getItem('profile');
+    export let loginStatus;
+    let loginData;
+    let loginInfo;
 
-		loginInfo = {
-			loginStatus: loginStatus,
-			loginData: loginData
-		};
-	}
+    if (browser) {
+        loginData = localStorage.getItem('profile');
+
+        loginInfo = {
+            loginStatus: loginStatus,
+            loginData: loginData
+        };
+    }
 </script>
 
 <div class="bg-base-100">
-	<Nav />
-
-	<main>
-		<slot />
-	</main>
+    <Nav/>
+    <main>
+        <Transition url="{$page.url}">
+            <slot/>
+        </Transition>
+    </main>
 </div>

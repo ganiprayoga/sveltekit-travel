@@ -9,7 +9,6 @@
   tour.reviewNumber = 132;
   tour.price = (tour.array_options.options_f_price) ? numberFormat(tour.array_options.options_f_price) : "price";
 
-  console.log(tour.array_options.options_f_price)
 </script>
 
 <a
