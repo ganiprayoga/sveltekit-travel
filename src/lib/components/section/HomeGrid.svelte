@@ -8,11 +8,7 @@
 
   onMount(async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/projects`, {
-        headers: {
-          DOLAPIKEY: localStorage.getItem('DOLAPIKEY')
-        }
-      });
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/projet`);
       const json = await res.json();
 
       if (json.error) {
