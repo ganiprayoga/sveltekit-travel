@@ -1,0 +1,40 @@
+{
+  "tourID": 2,
+  "tourItinerary": [
+    {
+      "ID": 1,
+      "date": '2022-06-06',
+      "title": 'Kelor Island - Menjerite - Rinca - Kalong Kinca',
+      "activities": [
+        {
+          "ID": 2,
+          "timeStart": '08:00',
+          "timeEnd": '10:00',
+          "title": 'Pick up from Hotel or Airport',
+          "icon": 'plane-arrival'
+        },
+        {
+          "ID": 3,
+          "timeStart": '10:00',
+          "timeEnd": '10:30',
+          "title": 'Sailing to Kelor Island',
+          "icon": 'sailboat'
+        }
+      ]
+    },
+    {
+      "ID": 4,
+      "date": '2022-06-06',
+      "title": 'Padar Island - Pink Beach - Manta Point - Taka Makassar - Sebayur Island',
+      "itinerary": [
+        {
+          "ID": 5,
+          "timeStart": '05:00',
+          "timeEnd": '06:00',
+          "description": 'Preparing for Sunrise Trekking in Padar Island',
+          "icon": 'sailboat'
+        }
+      ]
+    }
+  ]
+}

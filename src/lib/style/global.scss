@@ -2,3 +2,17 @@
 @import './fontawesome/scss/fontawesome.scss';
 @import './fontawesome/scss/regular.scss';
 @import './fontawesome/scss/solid.scss';
+
+.regular-fancy-list ul{
+  @apply list-disc
+}
+
+.regular-fancy-list ul li::marker {
+  content: "\f192";
+  font-family: "Font Awesome 6 Pro";
+  padding: 0 10px 0 0;
+}
+
+.regular-fancy-list > ul > li{
+
+}
