@@ -19,9 +19,6 @@
   import RegFancy from "$lib/components/elements/RegularFancyList.svelte";
 
   export let tourID;
-  const image = [
-    ImgPlaceholder, ImgPlaceholder, ImgPlaceholder
-  ]
 
   let tour = {}
   let customError = ''
@@ -66,7 +63,7 @@
                     {(21.222)} reviews )</span></div>
             </div>
             <div class="md:px-4">
-                            <Carousel images={image}/>
+                <Carousel images={tour.image}/>
             </div>
         </div>
         <div class="px-4 divider"></div>

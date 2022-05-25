@@ -4,7 +4,7 @@
 
   export let tour = {};
 
-  tour.image = Placeholder;
+  tour.image = tour.image[0];
   tour.rating = 4.2;
   tour.reviewNumber = 132;
   tour.price = (tour.array_options.options_f_price) ? numberFormat(tour.array_options.options_f_price) : "price";
