@@ -4,7 +4,7 @@ export function numberFormat(number, decimals = 0) {
     }).format(Number(number));
 }
 
-export function dateFormat(date) {
+export function dateFormat(date, format = 'medium') {
     date = new Date(date * 1000)
-    return Intl.DateTimeFormat("id-ID").format(date)
+    return Intl.DateTimeFormat("id-ID",{dateStyle: format}).format(date)
 }

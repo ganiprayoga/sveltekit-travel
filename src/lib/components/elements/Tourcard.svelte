@@ -11,11 +11,9 @@
 
 </script>
 
-<a
-        sveltekit:prefetch
-        href={'tour/detail/' + tour.id}
-        class="card bg-base-100 shadow-sm hover:shadow-xl"
->
+<a sveltekit:prefetch
+   href={'tour/detail/' + tour.id}
+   class="card bg-base-100 shadow-sm hover:shadow-xl">
     <img class="object-cover w-full aspect-video" src={tour.image} alt=""/>
     <div class="card-body p-4">
         <h2 class="card-title text-lg">
