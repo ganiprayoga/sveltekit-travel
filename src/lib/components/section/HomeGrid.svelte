@@ -8,7 +8,7 @@
 
   onMount(async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/projet`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/projet?sqlfilters=te.f_is_master%20%3D%20'1'`);
       const json = await res.json();
 
       if (json.error) {
