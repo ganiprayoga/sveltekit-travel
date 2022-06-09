@@ -34,9 +34,9 @@
 	let tourLeader;
 	let customError = '';
 
-	async function loadGuide(guideID) {
+	async function loadGuide(guide_id) {
 		try {
-			const res = await fetch(`${import.meta.env.VITE_API_URL}/members/${guideID}`,
+			const res = await fetch(`${import.meta.env.VITE_API_URL}/members/${guide_id}`,
 				{
 					headers: {DOLAPIKEY: localStorage.getItem('DOLAPIKEY')}
 				});
@@ -192,9 +192,7 @@
 
             <div class="bg-white shadow rounded-lg my-4">
                 <div class="px-4 py-5">
-					<pre>
-						{JSON.stringify(trip, null, 2)}
-					</pre>
+
                 </div>
             </div>
         {:else}

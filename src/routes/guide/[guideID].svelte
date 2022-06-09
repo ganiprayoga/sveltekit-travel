@@ -3,30 +3,10 @@
 
 	export async function load({params}) {
 		const guideID = params.guideID;
-		const guide = await guideDetail();
-		const titleProps = {
-			title: guide.name,
-			breadCrumb: [
-				{
-					title: 'Home',
-					uri: '/'
-				},
-				{
-					title: 'Customer Booking',
-					uri: '/customer-bookings/'
-				},
-				{
-					title: 'Trip Detail',
-					uri: '/customer-bookings/trip/123884'
-				}
-			],
-			backURI: '/customer-bookings/trip/123884/'
-		};
+		// const guide = await guideDetail();
 		return {
 			props: {
-				person: guide,
-				guideID: id,
-				titleProps: titleProps,
+				guideID: guideID,
 				loaded: true
 			}
 		};
@@ -38,10 +18,10 @@
 	import LoadTitle from '$lib/components/loading/Title.svelte';
 	import {onMount} from "svelte";
 
-	export let person;
+	let person;
 	export let guideID;
-	export let titleProps;
-	export let loaded = false;
+	let titleProps;
+	let loaded = false;
 
 	let guide;
 	let customError;
@@ -61,13 +41,33 @@
 				return false;
 			}
 
-			guide = json;
+			person = json;
+			person.certificate = [];
 			loaded = true;
 
 		} catch (e) {
-
+            console.log(e);
 		}
 	})
+
+    titleProps = {
+			title: 'Title',
+			breadCrumb: [
+				{
+					title: 'Home',
+					uri: '/'
+				},
+				{
+					title: 'Customer Booking',
+					uri: '/customer-bookings/'
+				},
+				{
+					title: 'Trip Detail',
+					uri: '/customer-bookings/trip/123884'
+				}
+			],
+			backURI: '/customer-bookings/trip/123884/'
+		};
 
 	const comments = [
 		{
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div>
-                        <h1 class="text-2xl font-bold text-gray-900">{person.name}</h1>
+                        <h1 class="text-2xl font-bold text-gray-900">{person.firstname} {person.lastname}</h1>
                         <p class="text-sm font-medium text-gray-500">
                             Joined since
                             <time datetime="2020-08-25">August 25, 2020</time>
@@ -123,7 +123,7 @@
                 <div
                         class="mt-6 flex flex-col justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3"
                 >
-                    <p class="text-center mb-4">{person.shortBio}</p>
+                    <p class="text-center mb-4">{person.array_options.options_f_about}</p>
                     <button type="button" class="btn btn-primary"
                     ><i class="fab fa-whatsapp"/> &nbsp; WA Chat
                     </button
@@ -151,7 +151,7 @@
                                 <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                                     <div class="sm:col-span-1">
                                         <dt class="text-sm font-medium text-gray-500">Origin</dt>
-                                        <dd class="mt-1 text-sm text-gray-900">{person.origin}</dd>
+                                        <dd class="mt-1 text-sm text-gray-900"></dd>
                                     </div>
                                     <div class="sm:col-span-1">
                                         <dt class="text-sm font-medium text-gray-500">Email address</dt>
@@ -161,7 +161,7 @@
                                     <div class="sm:col-span-2">
                                         <dt class="text-sm font-medium text-gray-500">About</dt>
                                         <dd class="mt-1 text-sm text-gray-900">
-                                            {person.longBio}
+
                                         </dd>
                                     </div>
                                 </dl>
