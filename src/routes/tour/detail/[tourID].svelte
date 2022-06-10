@@ -13,10 +13,10 @@
 <script lang="ts">
   import {onMount} from "svelte";
   import {numberFormat} from '$lib/constant';
-  import ImgPlaceholder from '$lib/assets/images/placeholder.png'
   import Expand from '$lib/components/elements/Expand.svelte'
   import Carousel from '$lib/components/elements/Carousel.svelte'
   import RegFancy from "$lib/components/elements/RegularFancyList.svelte";
+  import DetailItinerary from '$lib/components/section/DetailItinerary.svelte';
 
   export let tourID;
 
@@ -78,6 +78,11 @@
                 <h2 class="font-medium text-xl mb-4">Place to Visit</h2>
                 <RegFancy content="{tour.array_options.options_f_place_to_visit}"/>
 
+
+                <div class="divider"></div>
+                <h2 class="font-medium text-xl mb-4">Itinerary</h2>
+                <DetailItinerary detailed={true} tripID={tourID}/>
+
                 <!--FOOD TO TRY-->
                 <div class="divider"></div>
                 <h2 class="font-medium text-xl mb-4">Fancy Food to Try</h2>
@@ -88,12 +93,12 @@
                 <h2 class="font-medium text-xl mb-4">Local Attraction</h2>
                 <Expand textContent="{tour.array_options.options_f_attraction}"/>
 
-                <!--FOOD TO TRY-->
+                <!--PRICE NOT INCLUDE-->
                 <div class="divider"></div>
                 <h2 class="font-medium text-xl mb-4">Price Not Include</h2>
                 <RegFancy content="{tour.array_options.options_f_not_include}"/>
 
-                <!--FOOD TO TRY-->
+                <!--FACILITIES-->
                 <div class="divider"></div>
                 <h2 class="font-medium text-xl mb-4">Facilities</h2>
                 <RegFancy content="{tour.array_options.options_f_facility}"/>

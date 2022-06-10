@@ -16,16 +16,19 @@
 <script>
 	import PageTitle from '$lib/components/section/page/Title.svelte';
 	import LoadTitle from '$lib/components/loading/Title.svelte';
-	import {onMount} from "svelte";
 	import {dateFormat} from '$lib/constant';
+	import {onMount} from "svelte";
+	import {page} from '$app/stores';
 
-	let person;
 	export let guideID;
+	let person;
 	let titleProps;
 	let loaded = false;
 
 	let guide;
 	let customError;
+
+	const backURI = $page.url.searchParams.get('backuri');
 
 	onMount(async () => {
 		try {
@@ -34,7 +37,6 @@
 				headers: {DOLAPIKEY: localStorage.getItem('DOLAPIKEY')}
 			})
 			const json = await res.json();
-			console.log({GuideData: json})
 
 			if (json.error) {
 				customError = json.error.message;
@@ -67,7 +69,7 @@
 				uri: '/customer-bookings/trip/2'
 			}
 		],
-		backURI: '/customer-bookings/trip/2/'
+		backURI: backURI
 	};
 
 	const comments = [

@@ -1,11 +1,14 @@
 <script>
-	export let itinerary = {};
+	import {page} from '$app/stores';
+
 	export let detailed = false;
 	export let tripID;
 
 	let customError
 	let loaded
 	let itine = []
+	let uriNow = new URLSearchParams({backuri: $page.url.pathname})
+
 
 	import {onMount} from 'svelte';
 
@@ -44,15 +47,15 @@
                     <div class="relative flex items-start space-x-3">
                         <div class="relative">
                             <div
-                                    class="h-10 w-10 rounded-full bg-primary flex items-center justify-center ring-8 ring-white"
+                                    class="h-10 w-10 rounded-full bg-primary flex items-center justify-center"
                             >
-                                <i class="fas fa-calendar" ></i>
+                                <i class="fas fa-calendar"></i>
                             </div>
                         </div>
                         <div class="m in-w-0 flex-1">
                             <div>
                                 <div class="">
-                                    <span class="font-medium text-gray-900">Hari ke-{activityItemIdx+1}</span>
+                                    <span class="font-medium text-gray-900">Hari ke-{activityItemIdx + 1}</span>
                                 </div>
                                 <p class="mt-0.5 text-sm text-gray-500">{activityItem.title}</p>
                             </div>
@@ -74,27 +77,25 @@
                                 <div>
                                     <div class="relative px-1">
                                         <div
-                                                class="h-8 w-8 bg-gray-100 rounded-full ring-8 ring-white flex items-center justify-center"
+                                                class="h-8 w-8 bg-gray-100 rounded-full flex items-center justify-center"
                                         >
                                             <i class="far {schedule.icon ? 'fa-' + schedule.icon : `fa-clock`}"></i>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="min-w-0 flex flex-row flex-1 items-start py-1.5">
+                                <div class="min-w-0 flex flex-row flex-1 items-start">
                                     <div class="text-sm text-gray-500 flex-1">
 										<span class="font-medium text-gray-900">
 											{schedule.timeStart}
-                                            {#if schedule.timeEnd !== null}
+                                            {#if schedule.timeEnd !== false}
 												<span> - {schedule.timeEnd}</span>
 											{/if}
 										</span>
                                         <p class="">{schedule.title}</p>
-                                        <p class="">{schedule.description}</p>
                                     </div>
-                                    {#if schedule.detailID && detailed}
-                                        <a
-                                                href={`/customer-bookings/itinerary-${tripID}/${schedule.detailID}`}
-                                                class="btn btn-xs btn-primary mt-4 flex-initial shrink"
+                                    {#if schedule.description && detailed}
+                                        <a href={`/customer-bookings/itinerary-${tripID}/${schedule.id}?${uriNow}`}
+                                           class="btn btn-xs btn-primary mt-4 flex-initial shrink"
                                         >
                                             Detail
                                         </a>

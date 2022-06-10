@@ -1,5 +1,8 @@
 <script lang="ts">
+  import {page} from "$app/stores";
+
   export let person;
+  let uriNow = new URLSearchParams({backuri: $page.url.pathname})
 </script>
 
 {#if (person)}
@@ -19,7 +22,7 @@
         <div>
             <div class="-mt-px flex divide-x divide-gray-200">
                 <div class="w-0 flex-1 flex">
-                    <a href={`/guide/${person.id}`}
+                    <a href={`/guide/${person.id}?${uriNow}`}
                        class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500">
                         <i class="far fa-user"/>
                         <span class="ml-3">Detail</span>
