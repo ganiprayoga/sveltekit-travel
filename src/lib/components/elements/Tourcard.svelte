@@ -27,11 +27,10 @@
         <p class="font-bold"/>
         <p class="text-secondary"/>
         <div class="card-actions">
-			<span class="text-lg font-semibold"
-            >Rp{tour.price}<span class="font-normal text-sm text-gray-400"
-            >/person</span
-            ></span
-            >
+			<span class="text-lg font-semibold">
+                Rp{tour.price}
+                <span class="font-normal text-sm text-gray-400">/person</span>
+            </span>
         </div>
     </div>
 </a>

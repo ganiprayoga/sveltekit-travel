@@ -17,6 +17,7 @@
 	import PageTitle from '$lib/components/section/page/Title.svelte';
 	import LoadTitle from '$lib/components/loading/Title.svelte';
 	import {onMount} from "svelte";
+	import {dateFormat} from '$lib/constant';
 
 	let person;
 	export let guideID;
@@ -46,28 +47,28 @@
 			loaded = true;
 
 		} catch (e) {
-            console.log(e);
+			console.log(e);
 		}
 	})
 
-    titleProps = {
-			title: 'Title',
-			breadCrumb: [
-				{
-					title: 'Home',
-					uri: '/'
-				},
-				{
-					title: 'Customer Booking',
-					uri: '/customer-bookings/'
-				},
-				{
-					title: 'Trip Detail',
-					uri: '/customer-bookings/trip/123884'
-				}
-			],
-			backURI: '/customer-bookings/trip/123884/'
-		};
+	titleProps = {
+		title: 'Title',
+		breadCrumb: [
+			{
+				title: 'Home',
+				uri: '/'
+			},
+			{
+				title: 'Customer Booking',
+				uri: '/customer-bookings/'
+			},
+			{
+				title: 'Trip Detail',
+				uri: '/customer-bookings/trip/2'
+			}
+		],
+		backURI: '/customer-bookings/trip/2/'
+	};
 
 	const comments = [
 		{
@@ -107,7 +108,7 @@
                 <div class="flex items-center space-x-5">
                     <div class="flex-shrink-0">
                         <div class="relative">
-                            <img class="h-16 w-16 rounded-full" src={person.image} alt=""/>
+                            <img class="h-16 w-16 rounded-full" src={person.photo} alt=""/>
                             <span class="absolute inset-0 shadow-inner rounded-full" aria-hidden="true"/>
                         </div>
                     </div>
@@ -115,7 +116,7 @@
                         <h1 class="text-2xl font-bold text-gray-900">{person.firstname} {person.lastname}</h1>
                         <p class="text-sm font-medium text-gray-500">
                             Joined since
-                            <time datetime="2020-08-25">August 25, 2020</time>
+                            <time datetime="2020-08-25">{dateFormat(person.date_validation)}</time>
                         </p>
                     </div>
                 </div>
@@ -123,7 +124,7 @@
                 <div
                         class="mt-6 flex flex-col justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3"
                 >
-                    <p class="text-center mb-4">{person.array_options.options_f_about}</p>
+                    <p class="text-center mb-4">{@html person.array_options.options_f_about}</p>
                     <button type="button" class="btn btn-primary"
                     ><i class="fab fa-whatsapp"/> &nbsp; WA Chat
                     </button
