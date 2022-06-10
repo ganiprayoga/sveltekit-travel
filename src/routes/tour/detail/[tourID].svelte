@@ -81,7 +81,7 @@
 
                 <div class="divider"></div>
                 <h2 class="font-medium text-xl mb-4">Itinerary</h2>
-                <DetailItinerary detailed={true} tripID={tourID}/>
+                <DetailItinerary detailed={false} tripID={tourID}/>
 
                 <!--FOOD TO TRY-->
                 <div class="divider"></div>
